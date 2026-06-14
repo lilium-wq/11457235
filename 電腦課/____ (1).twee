@@ -1,0 +1,1244 @@
+:: StoryTitle
+織物文化
+
+
+:: StoryData
+{
+  "ifid": "1C7AC254-4353-4C42-ABBC-F8D8D742C2E2",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: ActionMenu {"position":"300,350","size":"100,100"}
+<div class="menu-card">
+
+<p>你想要怎麼探索這間工房？</p>
+
+<h3>🔰 基本探索</h3>
+
+<div class="menu-button">[[觀察師傅的動作->Observe]]</div>
+<div class="menu-button">[[詢問這項技術->Ask]]</div>
+<div class="menu-button">[[深入了解傳統->Learn]]</div>
+
+<h3>🔧 工藝細節</h3>
+
+<div class="menu-button">[[觀察工具->Tools]]</div>
+<div class="menu-button">[[了解製作流程->Process]]</div>
+<div class="menu-button">[[了解和服用途->Kimono]]</div>
+
+<br>
+
+<div class="menu-button">[[返回工房入口->Intro]]</div>
+
+</div>
+
+
+:: Ask {"position":"625,0","size":"100,100"}
+<<set _open2 = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+你開口問道：<br>
+「這是怎麼做的？」
+</p>
+
+<p>
+師傅停下手中的動作，看了你一眼。
+</p>
+
+<p>
+「這叫做 
+<<link "染色（せんしょく）">>
+
+<<set _open2 = !_open2>>
+
+<<run
+if (!$learnedWords.includes("染色")) {
+  $learnedWords.push("染色");
+}
+>>
+
+<<replace "#word2">>
+<<if _open2>>
+  <div class="word-box">
+  染色：將顏料染入布料的技術。<br>
+  例句：この布は染色されています。
+  </div>
+<</if>>
+<</replace>>
+
+<</link>>
+。」
+</p>
+
+<div id="word2"></div>
+
+<p>
+這是一種重要的
+<<link "技術（ぎじゅつ）">>
+
+<<set _openA = !_openA>>
+
+<<run
+if (!$learnedWords.includes("技術")) {
+  $learnedWords.push("技術");
+}
+>>
+
+<<replace "#wordA">>
+<<if _openA>>
+<div class="word-box">
+技術：進行某種工作的能力與方法。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>。
+</p>
+
+<div id="wordA"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+  <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+<p>
+你點點頭，開始慢慢理解這門技術。
+</p>
+
+<div class="menu-button">[[回到探索->ActionMenu]]</div>
+
+</div>
+
+
+:: Graduate {"position":"1050,475","size":"100,100"}
+<div class="menu-card">
+
+<h1>🎓 恭喜畢業！</h1>
+
+<p>
+你已經完全掌握京都友禪染的學習內容！
+</p>
+
+<p>
+所有單字與文化知識你都成功理解了。
+</p>
+
+<p>
+這趟學習之旅順利完成 🎉
+</p>
+
+<div class="menu-button">[[回到首頁->Start]]</div>
+
+</div>
+
+
+:: Intro {"position":"250,500","size":"100,100"}
+<<set _open = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+你走進京都的一間工房。<br>
+空氣中瀰漫著淡淡的顏料味。<br>
+一位師傅正在專心處理布料。
+</p>
+
+<p>
+師傅沒有抬頭，緩緩說：
+</p>
+
+<p>
+「這是 
+<<link "友禪染（ゆうぜんぞめ）">>
+
+<<set _open = !_open>>
+
+<<run
+if (!$learnedWords.includes("友禪染")) {
+  $learnedWords.push("友禪染");
+}
+>>
+
+<<replace "#wordlist">>
+  📘 已學單字：<br>
+
+  <<if $learnedWords.length > 0>>
+    <<for _w range $learnedWords>>
+      <span class="word-tag"><<=_w>></span>
+    <</for>>
+  <<else>>
+    <span style="color:#888;">（尚未學習）</span>
+  <</if>>
+<</replace>>
+
+<<replace "#word">>
+<<if _open>>
+  <div class="word-box">
+  友禪染：京都傳統染布技術。<br>
+  例句：この着物は友禪染です。
+  </div>
+<</if>>
+<</replace>>
+
+<</link>>
+」
+</p>
+
+<div id="word"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+  <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+<div class="menu-button">[[繼續探索->ActionMenu]]</div>
+<div class="menu-button">[[開始測驗->Quiz1]]</div>
+
+</div>
+
+
+
+:: Kimono {"position":"625,550","size":"100,100"}
+<<set _open8 = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+完成的布料會用來製作
+<<link "和服（わふく）">>
+
+<<set _open8 = !_open8>>
+
+<<run
+if (!$learnedWords.includes("和服")) {
+  $learnedWords.push("和服");
+}
+>>
+
+<<replace "#word8">>
+<<if _open8>>
+<div class="word-box">
+和服：日本傳統服裝。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>。
+</p>
+
+<div id="word8"></div>
+<p>
+和服上的
+<<link "模様（もよう）">>
+
+<<set _openG = !_openG>>
+
+<<run
+if (!$learnedWords.includes("模様")) {
+  $learnedWords.push("模様");
+}
+>>
+
+<<replace "#wordG">>
+<<if _openG>>
+<div class="word-box">
+模様：布料上的圖案或花紋。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>非常精緻。
+</p>
+
+<div id="wordG"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+    <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+<div class="menu-button">[[回到探索->ActionMenu]]</div>
+
+</div>
+
+
+:: Learn {"position":"650,200","size":"100,100"}
+<<set _open4 = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+你在一旁默默看著這一切。
+</p>
+
+<p>
+師傅忽然開口說：
+</p>
+
+<p>
+「這門技術，是從很久以前傳下來的。」
+</p>
+
+<p>
+「這叫做 
+<<link "伝統（でんとう）">>
+
+<<set _open4 = !_open4>>
+
+<<run
+if (!$learnedWords.includes("伝統")) {
+  $learnedWords.push("伝統");
+}
+>>
+
+<<replace "#word4">>
+<<if _open4>>
+  <div class="word-box">
+  伝統：世代相傳的文化與技術。<br>
+  例句：これは日本の伝統です。
+  </div>
+<</if>>
+<</replace>>
+
+<</link>>
+。」
+</p>
+
+<div id="word4"></div>
+
+<p>
+這些工作需要經驗豐富的
+<<link "職人（しょくにん）">>
+
+<<set _openC = !_openC>>
+
+<<run
+if (!$learnedWords.includes("職人")) {
+  $learnedWords.push("職人");
+}
+>>
+
+<<replace "#wordC">>
+<<if _openC>>
+<div class="word-box">
+職人：專門從事某種技術工作的人。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>。
+</p>
+
+<div id="wordC"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+    <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+<p>
+你開始理解，這不只是工作，而是一種文化。
+</p>
+
+<div class="menu-button">[[回到探索->ActionMenu]]</div>
+
+</div>
+
+
+:: Observe {"position":"675,100","size":"100,100"}
+<<set _open3 = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+你靠近一點，仔細觀察師傅的動作。
+</p>
+
+<p>
+師傅正在慢慢地將顏料塗在布上。
+</p>
+
+<p>
+每一筆都非常細緻，小心翼翼。
+</p>
+
+<p>
+你注意到那塊
+<<link "布料（ぬの）">>
+
+<<set _open3 = !_open3>>
+
+<<run
+if (!$learnedWords.includes("布料")) {
+  $learnedWords.push("布料");
+}
+>>
+
+<<replace "#word3">>
+<<if _open3>>
+  <div class="word-box">
+  布料：用來製作衣物的織物材料。<br>
+  例句：この布料はとても柔らかいです。
+  </div>
+<</if>>
+<</replace>>
+
+<</link>>
+上顯現出淡淡的顏色。
+</p>
+
+<div id="word3"></div>
+
+<p>
+你注意到布上出現不同的
+<<link "色（いろ）">>
+
+<<set _openB = !_openB>>
+
+<<run
+if (!$learnedWords.includes("色")) {
+  $learnedWords.push("色");
+}
+>>
+
+<<replace "#wordB">>
+<<if _openB>>
+<div class="word-box">
+色：布料呈現出的顏色。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>。
+</p>
+
+<div id="wordB"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+    <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+<p>
+你開始理解這項工藝需要極大的耐心。
+</p>
+
+<div class="menu-button">[[回到探索->ActionMenu]]</div>
+
+</div>
+
+
+:: Process {"position":"625,425","size":"100,100"}
+<<set _open7 = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+你看到師傅先畫出圖案草稿。
+</p>
+
+<p>
+「這叫做 
+<<link "下絵（したえ）">>
+
+<<set _open7 = !_open7>>
+
+<<run
+if (!$learnedWords.includes("下絵")) {
+  $learnedWords.push("下絵");
+}
+>>
+
+<<replace "#word7">>
+<<if _open7>>
+<div class="word-box">
+下絵：正式染色前的草稿。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>」
+</p>
+
+<div id="word7"></div>
+
+<p>
+師傅使用
+<<link "糊（のり）">>
+
+<<set _openE = !_openE>>
+
+<<run
+if (!$learnedWords.includes("糊")) {
+  $learnedWords.push("糊");
+}
+>>
+
+<<replace "#wordE">>
+<<if _openE>>
+<div class="word-box">
+糊：防止顏料擴散的材料。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>來控制圖案。
+</p>
+
+<div id="wordE"></div>
+
+<p>
+最後會進行
+<<link "蒸し（むし）">>
+
+<<set _openF = !_openF>>
+
+<<run
+if (!$learnedWords.includes("蒸し")) {
+  $learnedWords.push("蒸し");
+}
+>>
+
+<<replace "#wordF">>
+<<if _openF>>
+<div class="word-box">
+蒸し：用蒸氣固定顏色。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>的步驟。
+</p>
+
+<div id="wordF"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+    <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+<div class="menu-button">[[回到探索->ActionMenu]]</div>
+
+</div>
+
+
+:: Quiz1 {"position":"75,650","size":"100,100"}
+<div class="menu-card">
+
+<p>Q1：友禪染是什麼？</p>
+
+<<link "一種染色技術">>
+<<set $score += 1>>
+<<goto "Quiz2">>
+<</link>>
+
+<<link "一種食物">>
+<<run $wrong.push("Q1：友禪染")>>
+<<goto "Quiz2">>
+<</link>>
+
+</div>
+
+
+:: Quiz10 {"position":"925,900","size":"100,100"}
+<div class="menu-card">
+
+<p>Q10：模様是？</p>
+
+<<link "花紋圖案">>
+<<set $score +=1>>
+<<goto "Result">>
+<</link>>
+
+<<link "工具">>
+.push("Q10：模樣")>>
+<<goto "Result">>
+<</link>>
+
+</div>
+
+
+:: Quiz2 {"position":"75,800","size":"100,100"}
+<div class="menu-card">
+
+<p>Q2：染色是什麼？</p>
+
+<<link "將顏料染入布料">>
+<<set $score += 1>>
+<<goto "Quiz3">>
+<</link>>
+
+<<link "剪布">>
+<<run $wrong.push("Q2：染色")>>
+<<goto "Quiz3">>
+<</link>>
+
+</div>
+
+
+:: Quiz3 {"position":"200,800","size":"100,100"}
+<div class="menu-card">
+
+<p>Q3：布料是什麼？</p>
+
+<<link "製作衣物的材料">>
+<<set $score += 1>>
+<<goto "Quiz4">>
+<</link>>
+
+<<link "一種工具">>
+<<run $wrong.push("Q3：布料")>>
+<<goto "Quiz4">>
+<</link>>
+
+</div>
+
+
+:: Quiz4 {"position":"325,800","size":"100,100"}
+<div class="menu-card">
+
+<p>Q4：伝統是什麼？</p>
+
+<<link "文化傳承">>
+<<set $score +=1>>
+<<goto "Quiz5">>
+<</link>>
+
+<<link "動物名稱">>
+<<run $wrong.push("Q4：伝統")>>
+<<goto "Quiz5">><</link>>
+
+</div>
+
+
+:: Quiz5 {"position":"450,800","size":"100,100"}
+<div class="menu-card">
+<p>Q5：筆是？</p>
+
+<<link "畫圖工具">>
+<<set $score +=1>>
+<<goto "Quiz6">>
+<</link>>
+
+<<link "食物">>
+<<run $wrong.push("Q5：筆")>>
+<<goto "Quiz6">>
+<</link>>
+
+</div>
+
+
+:: Quiz6 {"position":"575,800","size":"100,100"}
+<div class="menu-card">
+
+<p>Q6：顏料是？</p>
+
+<<link "上色材料">>
+<<set $score +=1>>
+<<goto "Quiz7">>
+<</link>>
+
+<<link "布料">>
+<<run $wrong.push("Q6：顏料")>>
+<<goto "Quiz7">>
+<</link>>
+
+</div>
+
+
+:: Quiz7 {"position":"600,950","size":"100,100"}
+<div class="menu-card">
+
+<p>Q7：下絵是？</p>
+
+<<link "草稿">>
+<<set $score +=1>>
+<<goto "Quiz8">>
+<</link>>
+
+<<link "食物">>
+<<run $wrong.push("Q7：下絵")>>
+<<goto "Quiz8">>
+<</link>>
+
+</div>
+
+
+:: Quiz8 {"position":"700,775","size":"100,100"}
+<div class="menu-card">
+
+<p>Q8：和服是？</p>
+
+<<link "日本服裝">>
+<<set $score +=1>>
+<<goto "Quiz9">>
+<</link>>
+
+<<link "樂器">>
+<<run $wrong.push("Q8：和服")>>
+<<goto "Quiz9">>
+<</link>>
+
+</div>
+
+
+:: Quiz9 {"position":"750,925","size":"100,100"}
+
+<div class="menu-card">
+
+<p>Q9：技術是？</p>
+
+<<link "能力方法">>
+<<set $score +=1>>
+<<goto "Quiz10">>
+<</link>>
+
+<<link "動物">>
+<<run $wrong.push("Q9：技術")>>
+<<goto "Quiz10">>
+<</link>>
+
+</div>
+
+
+:: Result {"position":"975,725","size":"100,100"}
+<div class="menu-card">
+
+<h2>測驗結果</h2>
+
+<p>你的分數是：<<print $score>> / 10</p>
+
+<!-- ✅ 60以下 -->
+<<if $score <= 5>>
+<p>😢 好像還不清楚，再回去看看吧！</p>
+<div class="menu-button">[[重新學習->Intro]]</div>
+
+<!-- ✅ 60~70 -->
+<<elseif $score <= 7>>
+<p>😐 還可以更好，再練習一下！</p>
+<div class="menu-button">[[重新學習->Intro]]</div>
+
+<!-- ✅ 70~80 -->
+<<elseif $score <= 8>>
+<p>🙂 已經大致掌握！</p>
+
+<div class="menu-button">[[查看錯題->WrongPage]]</div>
+<div class="menu-button">[[再練習一次->Quiz1]]</div>
+
+<!-- ✅ 90 -->
+<<elseif $score == 9>>
+<p>🔥 超棒的！只差一題就滿分！</p>
+
+<div class="menu-button">[[查看錯題->WrongPage]]</div>
+
+<!-- ✅ 100 -->
+<<else>>
+[[恭喜你完成學習->Graduate]]
+
+<</if>>
+
+</div>
+``
+
+
+:: Rules {"position":"450,50","size":"100,100"}
+<div class="menu-card">
+
+<h1>遊戲說明</h1>
+
+<hr>
+
+<p>
+本遊戲將帶領玩家探索京都工藝文化，<br>
+透過故事與探索學習日文單字與文化知識。
+</p>
+
+<p style="text-align:left;">
+一、玩家將透過劇情與互動了解友禪染工藝。<br>
+二、重要日文單字會在對話中出現並被記錄。<br>
+三、可在詞典系統中查看單字解釋與例句。<br>
+四、透過探索不同內容理解工藝流程與文化意涵。<br>
+五、完成學習後將進入測驗，檢驗學習成果。
+</p>
+
+<h2>系統與設計內容</h2>
+
+<hr>
+
+<p style="text-align:left;">
+一、本遊戲包含封面頁、遊戲說明與故事劇情。<br>
+二、使用CSS設計介面，包括字體、按鈕與版面配置。<br>
+三、透過對話式呈現單字，提升學習情境感。<br>
+四、建立詞典系統，讓玩家可複習學過的內容。<br>
+五、設計探索式場景，引導玩家逐步理解文化。<br>
+六、加入測驗系統，透過題目檢驗玩家理解程度。
+</p>
+
+<br>
+
+<div class="menu-button">
+<<link "返回">>
+  <<goto "Start">>
+<</link>>
+</div>
+
+<p style="margin-top:20px;">製作者：陳麗淑</p>
+
+</div>
+
+
+:: Start {"position":"150,225","size":"100,100"}
+<div class="menu-card">
+
+<h1>京都工藝物語</h1>
+
+<p style="font-size:14px; letter-spacing:2px;">
+KYOTO CRAFT STORY
+</p>
+
+<hr>
+
+<p>
+傳統，從未消失，<br>
+只是等待被理解。
+</p>
+
+<div class="menu-button">
+<<link "開始遊戲">>
+  <<goto "Intro">>
+<</link>>
+</div>
+
+<div class="menu-button">
+<<link "遊戲說明">>
+<<goto "Rules">>
+<</link>>
+</div>
+
+<p style="margin-top:20px;">
+製作者：11457235 陳麗淑
+</p>
+
+</div>
+
+
+
+:: StoryCaption {"position":"150,75","size":"100,100"}
+<<if $score>>
+<p>⭐ 分數：<<print $score>></p>
+<</if>>
+
+
+:: StoryInit {"position":"300,75","size":"100,100"}
+<<set $learnedWords = []>>
+
+<div id="word-list">
+已學單字：
+</div>
+
+<<set $score = 0>>
+<<set $wrong = []>>
+<<set $score = 0>>
+
+
+:: Tools {"position":"625,300","size":"100,100"}
+<<set _open5 = false>>
+<<set _open6 = false>>
+<<set $learnedWords = $learnedWords or []>>
+
+<div class="menu-card">
+
+<p>
+你觀察桌上的工具。
+</p>
+
+<p>
+師傅用一支細細的
+<<link "筆（ふで）">>
+
+<<set _open5 = !_open5>>
+
+<<run
+if (!$learnedWords.includes("筆")) {
+  $learnedWords.push("筆");
+}
+>>
+
+<<replace "#word5">>
+<<if _open5>>
+<div class="word-box">
+筆：用來描繪圖案的工具。<br>
+例句：職人用筆畫出細緻的線條。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>
+慢慢描繪圖案。
+</p>
+
+<p>
+旁邊放著各種
+<<link "顏料（がんりょう）">>
+
+<<set _open6 = !_open6>>
+
+<<run
+if (!$learnedWords.includes("顏料")) {
+  $learnedWords.push("顏料");
+}
+>>
+
+<<replace "#word6">>
+<<if _open6>>
+<div class="word-box">
+顏料：用來上色的材料。<br>
+例句：這些顏料決定了布的顏色。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>。
+</p>
+
+<div id="word5"></div>
+<div id="word6"></div>
+
+<p>
+桌上還有各種
+<<link "道具（どうぐ）">>
+
+<<set _openD = !_openD>>
+
+<<run
+if (!$learnedWords.includes("道具")) {
+  $learnedWords.push("道具");
+}
+>>
+
+<<replace "#wordD">>
+<<if _openD>>
+<div class="word-box">
+道具：進行製作時使用的器具。
+</div>
+<</if>>
+<</replace>>
+
+<</link>>。
+</p>
+
+<div id="wordD"></div>
+
+<br>
+
+<div id="wordlist" class="progress-box">
+📘 已學單字：<br>
+
+<<if $learnedWords.length > 0>>
+  <<for _w range $learnedWords>>
+    <span class="word-tag"><<=_w>></span>
+  <</for>>
+<<else>>
+  <span style="color:#888;">（尚未學習）</span>
+<</if>>
+
+</div>
+
+<br>
+
+
+<div class="menu-button">[[回到探索->ActionMenu]]</div>
+
+</div>
+
+
+:: WrongPage {"position":"1175,675","size":"100,100"}
+<div class="menu-card">
+
+<h2>錯誤題目</h2>
+
+<<if $wrong.length > 0>>
+
+<<for _q range $wrong>>
+<p><<=_q>></p>
+<</for>>
+
+<<else>>
+<p>🎉 全部答對！沒有錯誤！</p>
+
+<</if>>
+
+<div class="menu-button">[[返回結果->Result]]</div>
+<div class="menu-button">[[再考一次->Intro]]</div>
+
+</div>
+
+
+:: StoryStylesheet [stylesheet]
+body {
+  background: linear-gradient(to right, #e8d0d5, #cfd8e6);
+  font-family: "Noto Serif TC", serif;
+}
+
+/* 中央卡片 */
+.menu-card {
+  background: white;
+  width: 500px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.menu-card img {
+  width: 80%;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.menu-card h1 {
+  color: #5a3e36;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.menu-card p {
+  color: #666;
+  font-size: 16px;
+  
+  line-height: 1.6;
+}
+
+.menu-button {
+  background: #7da0d6;
+  color: white;
+  padding: 12px;
+  margin: 10px auto;
+  width: 240px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.menu-button:hover {
+  background: #5a7db5;
+  transform: scale(1.05);
+}
+
+hr {
+  width: 60%;
+  border: 1px solid #ddd;
+  margin: 15px auto;
+}
+
+.menu-card {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.menu-card p {
+  line-height: 1.8;
+}
+
+.menu-card p[style*="text-align:left"] {
+  padding-left: 20px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.menu-card h2 {
+  color: #5a3e36;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.menu-card p {
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.word {
+  color: #4a6fa5;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.word:hover {
+  text-decoration: underline;
+}
+
+.word-box {
+  background: #f3f6fb;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.word-box {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  width: 220px;
+  font-size: 14px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+
+  margin-top: 5px;
+  z-index: 10;
+}
+
+.word {
+  position: relative;
+}
+
+.word-tag {
+  display: inline-block;
+  background: #7da0d6;
+  color: white;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.menu-card p {
+  margin: 6px 0;
+  line-height: 1.8;
+}
+
+.progress-box {
+  background: #f4f7fb;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.menu-card a {
+  color: #4a6fa5;
+  font-weight: bold;
+}
+
+.menu-card {
+  color: #333;
+}
+
+.menu-card a {
+  color: #4a6fa5;
+  font-weight: bold;
+}
+
+.menu-card p {
+  line-height: 1.5;
+  margin: 10px 0;
+}
